@@ -1,0 +1,62 @@
+{
+  "appName": {
+    "message": "Переводчик"
+  },
+  "appDescription": {
+    "message": "Google Переводчик"
+  },
+  "appVersion": {
+    "message": "Версия"
+  },
+  "appAuthor": {
+    "message": "Разработчик"
+  },
+  "appOptions": {
+    "message": "Настройки переводчика"
+  },
+  "openHotkey": {
+    "message": "Открыть переводчик"
+  },
+  "translate": {
+    "message": "Перевести"
+  },
+  "clear": {
+    "message": "Очистить"
+  },
+  "reverseTranslation": {
+    "message": "Обратный перевод"
+  },
+  "swapLanguages": {
+    "message": "Поменять местами"
+  },
+  "sourcePlaceholder": {
+    "message": "Исходный текст"
+  },
+  "targetPlaceholder": {
+    "message": "Перевод"
+  },
+  "reversePlaceholder": {
+    "message": "Обратный перевод"
+  },
+  "detectedLanguage": {
+    "message": "Определён: $1"
+  },
+  "errorUnknown": {
+    "message": "Неизвестная ошибка, попробуйте перевести позже"
+  },
+  "errorTooManyRequests": {
+    "message": "Слишком много запросов, попробуйте перевести через несколько минут"
+  },
+  "errorUriTooLong": {
+    "message": "Слишком длинный текст, попробуйте перевести его по частям"
+  },
+  "troubleshooting": {
+    "message": "Сброс настроек"
+  },
+  "troubleshootingResetSettings": {
+    "message": "Восстановление настроек по умолчанию"
+  },
+  "troubleshootingResetSettingsQuestion": {
+    "message": "Сбросить настройки?"
+  }
+}

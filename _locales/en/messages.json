@@ -1,0 +1,62 @@
+{
+  "appName": {
+    "message": "Translator"
+  },
+  "appDescription": {
+    "message": "Quick translate text"
+  },
+  "appVersion": {
+    "message": "Version"
+  },
+  "appAuthor": {
+    "message": "Author"
+  },
+  "appOptions": {
+    "message": "Translator Settings"
+  },
+  "openHotkey": {
+    "message": "Open Translator"
+  },
+  "translate": {
+    "message": "Translate"
+  },
+  "clear": {
+    "message": "Clear"
+  },
+  "reverseTranslation": {
+    "message": "Reverse translation"
+  },
+  "swapLanguages": {
+    "message": "Swap"
+  },
+  "sourcePlaceholder": {
+    "message": "Source text"
+  },
+  "targetPlaceholder": {
+    "message": "Translation"
+  },
+  "reversePlaceholder": {
+    "message": "Reverse translation"
+  },
+  "detectedLanguage": {
+    "message": "Detected: $1"
+  },
+  "errorUnknown": {
+    "message": "Unknown error, please try to translate later"
+  },
+  "errorTooManyRequests": {
+    "message": "Too many requests, try to translate in a few minutes"
+  },
+  "errorUriTooLong": {
+    "message": "The text is too long, try to translate it in parts"
+  },
+  "troubleshooting": {
+    "message": "Reset"
+  },
+  "troubleshootingResetSettings": {
+    "message": "Restore settings to their original defaults"
+  },
+  "troubleshootingResetSettingsQuestion": {
+    "message": "Reset settings?"
+  }
+}

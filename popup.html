@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+
+  <body>
+    <main>
+      <section class="languages">
+        <select id="lang-source"></select>
+        <button class="button-icon" id="lang-swap">
+          <svg width="24" height="24">
+            <path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z" />
+          </svg>
+        </button>
+        <select id="lang-target"></select>
+      </section>
+      <section class="source">
+        <div class="input-container">
+          <div class="inner-input-container">
+            <textarea id="source" autofocus></textarea>
+            <div class="input-underline"></div>
+          </div>
+        </div>
+      </section>
+      <section class="actions">
+        <select id="translator" hidden></select>
+        <div class="filler"></div>
+        <button class="button-outline" id="clear"></button>
+        <button class="button-accent" id="translate"></button>
+      </section>
+      <section class="target">
+        <div class="input-container">
+          <div class="inner-input-container">
+            <div class="textarea" id="target" contenteditable="true" spellcheck="false" readonly></div>
+            <div class="input-underline"></div>
+          </div>
+        </div>
+      </section>
+      <section class="reverse" id="reverse-section" hidden>
+        <div class="input-container">
+          <div class="inner-input-container">
+            <div class="textarea" id="reverse" contenteditable="true" spellcheck="false" readonly></div>
+            <div class="input-underline"></div>
+          </div>
+        </div>
+      </section>
+      <section class="reverse-options">
+        <label class="checkbox">
+          <input type="checkbox" id="reverse-checkbox" value="true" />
+          <span id="reverse-text"></span>
+        </label>
+      </section>
+    </main>
+
+    <script type="module" src="popup.js" async></script>
+  </body>
+</html>
