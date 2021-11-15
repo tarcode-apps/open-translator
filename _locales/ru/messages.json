@@ -1,9 +1,9 @@
 {
   "appName": {
-    "message": "Переводчик"
+    "message": "Open Translator"
   },
   "appDescription": {
-    "message": "Google Переводчик"
+    "message": "Быстрый доступ к Google Переводчику"
   },
   "appVersion": {
     "message": "Версия"
@@ -13,6 +13,9 @@
   },
   "appOptions": {
     "message": "Настройки переводчика"
+  },
+  "appTitle": {
+    "message": "Переводчик"
   },
   "openHotkey": {
     "message": "Открыть переводчик"

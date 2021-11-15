@@ -1,9 +1,9 @@
 {
   "appName": {
-    "message": "Translator"
+    "message": "Open Translator"
   },
   "appDescription": {
-    "message": "Quick translate text"
+    "message": "Quick access to Google Translate"
   },
   "appVersion": {
     "message": "Version"
@@ -13,6 +13,9 @@
   },
   "appOptions": {
     "message": "Translator Settings"
+  },
+  "appTitle": {
+    "message": "Translator"
   },
   "openHotkey": {
     "message": "Open Translator"

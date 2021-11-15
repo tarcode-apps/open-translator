@@ -23,7 +23,8 @@
     }
   ],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "__MSG_appTitle__"
   },
   "icons": {
     "16": "images/icon16.png",
