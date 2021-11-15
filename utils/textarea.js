@@ -32,10 +32,5 @@ export function createHtmlTextArea(element) {
     set: newValue => element.setAttribute('placeholder', newValue),
   });
 
-  Object.defineProperty(element, 'value', {
-    get: () => element.innerHTML,
-    set: newValue => (element.innerHTML = newValue),
-  });
-
   return element;
 }

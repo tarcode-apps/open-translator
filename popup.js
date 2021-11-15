@@ -1,7 +1,6 @@
 'use strict';
 
 import { createRipple } from './utils/ripple.js';
-import { escapeHtml } from './utils/sanitizer.js';
 import { createHtmlTextArea } from './utils/textarea.js';
 import { storage } from './browser/storage.js';
 import { i18n } from './browser/i18n.js';
@@ -268,40 +267,57 @@ async function updateAutoOptionAsync(languageCode) {
  * }} translation
  */
 function generateTranslationHtml(textArea, translation) {
-  let html = escapeHtml(translation.translatedText);
-  if (translation.dictionary) {
-    html = `<span class="dictionary-translation">${html}</span>`;
-    for (const entity of translation.dictionary) {
-      if (entity.partOfSpeech) {
-        html += `<div class="part-of-speech">${escapeHtml(entity.partOfSpeech)}</div>`;
-      }
+  textArea.innerHTML = '';
 
-      for (const term of entity.terms) {
-        html += '<div class="term">';
-        html += `<div class="term-word">${escapeHtml(term.word)}</div>`;
-        html += '<div class="term-reverse">';
-        for (const reverse of term.reverseTranslation) {
-          html += `<div class="term-reverse-word">${escapeHtml(reverse)}</div>`;
-        }
-        html += '</div>';
-        html += '</div>';
-      }
-    }
+  if (!translation.dictionary) {
+    textArea.appendChild(document.createTextNode(translation.translatedText));
+    return;
   }
 
-  textArea.value = html;
-  const reverseWords = Array.from(textArea.getElementsByClassName('term-reverse-word'));
-  for (const reverseWord of reverseWords) {
-    reverseWord.addEventListener(
-      'click',
-      async e => {
-        if (_sourceTextArea.value !== e.target.innerText) {
-          _sourceTextArea.value = e.target.innerText;
-          await translateAsync();
-        }
-      },
-      { passive: true },
-    );
+  const translationNode = document.createElement('span');
+  translationNode.classList.add('dictionary-translation');
+  translationNode.innerText = translation.translatedText;
+  textArea.appendChild(translationNode);
+
+  for (const entity of translation.dictionary) {
+    if (entity.partOfSpeech) {
+      const partOfSpeechNode = document.createElement('div');
+      partOfSpeechNode.classList.add('part-of-speech');
+      partOfSpeechNode.innerText = entity.partOfSpeech;
+      textArea.appendChild(partOfSpeechNode);
+    }
+
+    for (const term of entity.terms) {
+      const termNode = document.createElement('div');
+      termNode.classList.add('term');
+      textArea.appendChild(termNode);
+
+      const termWordNode = document.createElement('div');
+      termWordNode.classList.add('term-word');
+      termWordNode.innerText = term.word;
+      termNode.appendChild(termWordNode);
+
+      const termReverseNode = document.createElement('div');
+      termReverseNode.classList.add('term-reverse');
+      termNode.appendChild(termReverseNode);
+
+      for (const reverse of term.reverseTranslation) {
+        const termReverseWordNode = document.createElement('div');
+        termReverseWordNode.classList.add('term-reverse-word');
+        termReverseWordNode.innerText = reverse;
+        termReverseWordNode.addEventListener(
+          'click',
+          async e => {
+            if (_sourceTextArea.value !== e.target.innerText) {
+              _sourceTextArea.value = e.target.innerText;
+              await translateAsync();
+            }
+          },
+          { passive: true },
+        );
+        termReverseNode.appendChild(termReverseWordNode);
+      }
+    }
   }
 }
 
@@ -313,8 +329,14 @@ function generateTranslationHtml(textArea, translation) {
  * }} error
  */
 function generateErrorHtml(textArea, error) {
-  let html = '';
-  if (error.code) html += `<span class="error-code">${error.code}</span>`;
+  textArea.innerHTML = '';
+
+  if (error.code) {
+    const errorCodeNode = document.createElement('span');
+    errorCodeNode.classList.add('error-code');
+    errorCodeNode.innerText = error.code;
+    textArea.appendChild(errorCodeNode);
+  }
 
   let message;
   switch (error.code) {
@@ -328,9 +350,10 @@ function generateErrorHtml(textArea, error) {
       message = error.message || i18n.getMessage('errorUnknown');
   }
 
-  html += `<span class="error-message">${escapeHtml(message)}</span>`;
-
-  textArea.value = html;
+  const errorMessageNode = document.createElement('span');
+  errorMessageNode.classList.add('error-message');
+  errorMessageNode.innerText = message;
+  textArea.appendChild(errorMessageNode);
 }
 
 /**
@@ -446,14 +469,14 @@ async function translateAsync() {
         translatedReverse: reverse,
       });
     } else {
-      _reverseTextArea.value = '';
+      _reverseTextArea.innerHTML = '';
       await storage.local.setAsync({
         translatedReverse: undefined,
       });
     }
   } catch (error) {
     generateErrorHtml(_targetTextArea, error);
-    _reverseTextArea.value = '';
+    _reverseTextArea.innerHTML = '';
     await storage.local.setAsync({
       sourceText: '',
       translated: undefined,
@@ -464,8 +487,8 @@ async function translateAsync() {
 
 async function clearAsync() {
   _sourceTextArea.value = '';
-  _targetTextArea.value = '';
-  _reverseTextArea.value = '';
+  _targetTextArea.innerHTML = '';
+  _reverseTextArea.innerHTML = '';
   await updateAutoOptionAsync('');
 }
 
