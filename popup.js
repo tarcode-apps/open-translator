@@ -490,6 +490,11 @@ async function clearAsync() {
   _targetTextArea.innerHTML = '';
   _reverseTextArea.innerHTML = '';
   await updateAutoOptionAsync('');
+  await storage.local.setAsync({
+    sourceText: '',
+    translated: undefined,
+    translatedReverse: undefined,
+  });
 }
 
 async function swapAsync() {
