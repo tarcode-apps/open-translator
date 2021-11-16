@@ -15,7 +15,7 @@ Chrome extension that provides quick access to Google Translate, allowing you to
 
 ### Chrome Web Store
 
-`Soon!`
+[https://chrome.google.com/webstore/detail/open-translator/cgllihjilejnolgcflldbmjdkjgdgfaa](https://chrome.google.com/webstore/detail/open-translator/cgllihjilejnolgcflldbmjdkjgdgfaa)
 
 ### Manual
 
