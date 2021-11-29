@@ -17,6 +17,9 @@
   "appTitle": {
     "message": "Переводчик"
   },
+  "appSourceCode": {
+    "message": "Исходный код"
+  },
   "openHotkey": {
     "message": "Открыть переводчик"
   },

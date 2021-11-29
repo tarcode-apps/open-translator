@@ -17,6 +17,9 @@
   "appTitle": {
     "message": "Translator"
   },
+  "appSourceCode": {
+    "message": "Source Code"
+  },
   "openHotkey": {
     "message": "Open Translator"
   },

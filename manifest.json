@@ -4,6 +4,7 @@
   "version": "1.0",
   "author": "Artem Tarasov",
   "description": "__MSG_appDescription__",
+  "homepage_url": "https://github.com/tarcode-apps/open-translator",
   "default_locale": "en",
   "permissions": ["activeTab", "storage"],
   "host_permissions": ["http://*/*", "https://*/*"],

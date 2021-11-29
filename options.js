@@ -10,6 +10,7 @@ document.querySelectorAll('[data-locale]').forEach(elem => {
 
 document.getElementById('version').innerText = chrome.runtime.getManifest().version;
 document.getElementById('author').innerText = chrome.runtime.getManifest().author;
+document.getElementById('sourceCode').href = chrome.runtime.getManifest().homepage_url;
 
 /** @type {HTMLElement} */
 const _resetSettings = document.getElementById('resetSettings');
