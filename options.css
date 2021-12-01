@@ -10,7 +10,6 @@ html {
   --cr-section-min-height: 48px;
 
   --cr-card-border-radius: 4px;
-  --cr-card-shadow-color-rgb: var(--google-grey-800-rgb);
 
   --cr-elevation-1: rgba(var(--cr-card-shadow-color-rgb), 0.3) 0 1px 2px 0,
     rgba(var(--cr-card-shadow-color-rgb), 0.15) 0 1px 3px 1px;
@@ -25,8 +24,6 @@ html {
 
   --cr-card-shadow: var(--cr-elevation-1);
 
-  --cr-hover-background-color: rgba(var(--google-grey-900-rgb), 0.1);
-
   --cr-icon-button-fill-color: var(--google-grey-refresh-700);
   --cr-icon-button-icon-size: 20px;
 
@@ -38,10 +35,6 @@ html {
 @media (prefers-color-scheme: dark) {
   html {
     --md-background-color: rgb(32, 33, 36);
-
-    --cr-card-shadow-color-rgb: 0, 0, 0;
-
-    --cr-hover-background-color: rgba(255, 255, 255, 0.1);
 
     --cr-icon-button-fill-color: var(--google-grey-refresh-500);
 
