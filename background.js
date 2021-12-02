@@ -47,9 +47,6 @@ function setIcon(selected, colorScheme) {
 
   path = 'images/' + path;
   chrome.action.setIcon({
-    path: [16, 32, 48, 128].reduce((acc, size) => {
-      acc[size] = `${path}${size}.png`;
-      return acc;
-    }, {}),
+    path: Object.fromEntries(Object.keys(chrome.runtime.getManifest().icons).map(size => [size, `${path}${size}.png`])),
   });
 }
