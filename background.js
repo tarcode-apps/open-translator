@@ -21,6 +21,13 @@ chrome.storage.onChanged.addListener(changes => {
   }
 });
 
+chrome.storage.local.get(
+  ['selectedText', 'prefersScheme'],
+  ({ selectedText: lastSelectedText, prefersScheme: lastPrefersScheme }) => {
+    setIcon(!!lastSelectedText, lastPrefersScheme);
+  },
+);
+
 /**
  * @param {boolean} selected
  * @param {'light' | 'dark' | undefined} colorScheme
