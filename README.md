@@ -17,6 +17,10 @@ Chrome extension that provides quick access to Google Translate, allowing you to
 
 [https://chrome.google.com/webstore/detail/open-translator/cgllihjilejnolgcflldbmjdkjgdgfaa](https://chrome.google.com/webstore/detail/open-translator/cgllihjilejnolgcflldbmjdkjgdgfaa)
 
+### Microsoft Edge Addons
+
+[https://microsoftedge.microsoft.com/addons/detail/cnfadlhmcilpaonfgjcmdbahcknggpma](https://microsoftedge.microsoft.com/addons/detail/cnfadlhmcilpaonfgjcmdbahcknggpma)
+
 ### Manual
 
 1. Download the contents of this repository
