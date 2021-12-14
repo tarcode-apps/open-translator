@@ -20,7 +20,7 @@
   "appSourceCode": {
     "message": "Source Code"
   },
-  "openHotkey": {
+  "openShortcut": {
     "message": "Open Translator"
   },
   "translate": {
@@ -55,6 +55,24 @@
   },
   "errorUriTooLong": {
     "message": "The text is too long, try to translate it in parts"
+  },
+  "shortcuts": {
+    "message": "Keyboard shortcuts"
+  },
+  "shortcutEdit": {
+    "message": "Edit shortcut"
+  },
+  "shortcutNotSet": {
+    "message": "Not set"
+  },
+  "shortcutEnter": {
+    "message": "Type a shortcut"
+  },
+  "shortcutErrorModifierRequired": {
+    "message": "Include either Ctrl or Alt"
+  },
+  "shortcutErrorLetterRequired": {
+    "message": "Type a letter"
   },
   "troubleshooting": {
     "message": "Reset"

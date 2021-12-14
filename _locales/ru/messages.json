@@ -20,7 +20,7 @@
   "appSourceCode": {
     "message": "Исходный код"
   },
-  "openHotkey": {
+  "openShortcut": {
     "message": "Открыть переводчик"
   },
   "translate": {
@@ -55,6 +55,24 @@
   },
   "errorUriTooLong": {
     "message": "Слишком длинный текст, попробуйте перевести его по частям"
+  },
+  "shortcuts": {
+    "message": "Быстрые клавиши"
+  },
+  "shortcutEdit": {
+    "message": "Редактировать"
+  },
+  "shortcutNotSet": {
+    "message": "Не задано"
+  },
+  "shortcutEnter": {
+    "message": "Укажите быстрые клавиши"
+  },
+  "shortcutErrorModifierRequired": {
+    "message": "Сочетание должно начинаться с клавиши Ctrl или Alt"
+  },
+  "shortcutErrorLetterRequired": {
+    "message": "Необходимо добавить букву"
   },
   "troubleshooting": {
     "message": "Сброс настроек"

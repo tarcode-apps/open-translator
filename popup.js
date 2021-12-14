@@ -2,6 +2,7 @@
 
 import { createRipple } from './utils/ripple.js';
 import { createHtmlTextArea } from './utils/textarea.js';
+import { isShortcutPressed } from './utils/shortcut.js';
 import { storage } from './browser/storage.js';
 import { i18n } from './browser/i18n.js';
 import { GoogleTranslator } from './translators/google-translator.js';
@@ -512,6 +513,28 @@ async function swapAsync() {
 }
 
 (async () => {
+  const {
+    translatorUid: lastTranslatorUid,
+    reverse,
+    sourceText: lastSourceText,
+    selectedText: lastSelectedText,
+    translated: lastTranslated,
+    translatedReverse: lastTranslatedReverse,
+    detectedLanguageCode: lastDetectedLanguageCode,
+    shortcutReverse: lastShortcutReverse,
+    shortcutClear: lastShortcutClear,
+  } = await storage.local.getAsync([
+    'translatorUid',
+    'reverse',
+    'sourceText',
+    'selectedText',
+    'translated',
+    'translatedReverse',
+    'detectedLanguageCode',
+    'shortcutReverse',
+    'shortcutClear',
+  ]);
+
   const buttons = document.getElementsByTagName('button');
   for (const button of buttons) {
     button.addEventListener('click', createRipple, { passive: true });
@@ -528,11 +551,15 @@ async function swapAsync() {
   document.addEventListener(
     'keydown',
     async e => {
-      if (e.altKey && e.code == 'KeyR') {
+      if (isShortcutPressed(e, lastShortcutReverse)) {
         const reverse = (_reverseCheckbox.checked = !_reverseCheckbox.checked);
         await storage.local.setAsync({ reverse });
         updateReverse(reverse);
         if (reverse) await translateAsync();
+      }
+
+      if (isShortcutPressed(e, lastShortcutClear)) {
+        await clearAsync();
       }
     },
     { passive: true },
@@ -545,24 +572,6 @@ async function swapAsync() {
   if (_translators.length > 1) {
     _translatorSelect.removeAttribute('hidden');
   }
-
-  const {
-    translatorUid: lastTranslatorUid,
-    reverse,
-    sourceText: lastSourceText,
-    selectedText: lastSelectedText,
-    translated: lastTranslated,
-    translatedReverse: lastTranslatedReverse,
-    detectedLanguageCode: lastDetectedLanguageCode,
-  } = await storage.local.getAsync([
-    'translatorUid',
-    'reverse',
-    'sourceText',
-    'selectedText',
-    'translated',
-    'translatedReverse',
-    'detectedLanguageCode',
-  ]);
 
   _reverseCheckbox.checked = reverse;
   updateReverse(reverse);

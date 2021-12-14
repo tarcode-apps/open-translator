@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_appName__",
-  "version": "1.2",
+  "version": "1.3",
   "author": "Artem Tarasov",
   "description": "__MSG_appDescription__",
   "homepage_url": "https://github.com/tarcode-apps/open-translator",
@@ -39,7 +39,7 @@
         "default": "Ctrl+Q",
         "mac": "MacCtrl+Shift+Q"
       },
-      "description": "__MSG_openHotkey__"
+      "description": "__MSG_openShortcut__"
     }
   }
 }

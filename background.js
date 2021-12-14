@@ -6,6 +6,21 @@ chrome.runtime.onStartup.addListener(() => {
   });
 });
 
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.local.get(['shortcutReverseUserDefined'], ({ shortcutReverseUserDefined }) => {
+    if (!shortcutReverseUserDefined) {
+      chrome.storage.local.set({
+        shortcutReverse: {
+          code: 'KeyR',
+          altKey: true,
+          ctrlKey: false,
+          shiftKey: false,
+        },
+      });
+    }
+  });
+});
+
 chrome.storage.onChanged.addListener(changes => {
   if (changes.selectedText) {
     const selectedText = changes.selectedText.newValue;

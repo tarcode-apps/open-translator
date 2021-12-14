@@ -71,6 +71,9 @@ html {
   --cr-checked-color: var(--google-blue-600);
   --cr-focused-item-color: var(--google-grey-300);
   --cr-form-field-label-color: var(--google-grey-refresh-700);
+  --cr-form-field-label-font-size: 0.625rem;
+  --cr-form-field-label-height: 1em;
+  --cr-form-field-label-line-height: 1em;
   --cr-hairline-rgb: 0, 0, 0;
   --cr-link-color: var(--google-blue-700);
   --cr-separator-color: rgba(0, 0, 0, 0.06);
