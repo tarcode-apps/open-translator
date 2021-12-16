@@ -52,6 +52,40 @@ chrome.storage.local.get(
   },
 );
 
+chrome.contextMenus.create({
+  id: 'open_translator_window',
+  contexts: ['action'],
+  // https://github.com/w3c/webextensions/issues/93
+  // https://bugs.chromium.org/p/chromium/issues/detail?id=1268098
+  //title: chrome.i18n.getMessage('openInNewWindow'),
+  title: 'Open Translator in new window',
+});
+
+chrome.contextMenus.onClicked.addListener(info => {
+  switch (info.menuItemId) {
+    case 'open_translator_window': {
+      chrome.windows.create(
+        {
+          type: 'popup',
+          url: './popup.html?mode=window',
+          width: 450,
+          height: 500,
+          focused: false,
+        },
+        wnd => {
+          // Workaround for black window content
+          setTimeout(() => {
+            chrome.windows.update(wnd.id, {
+              focused: true,
+            });
+          }, 50);
+        },
+      );
+      break;
+    }
+  }
+});
+
 /**
  * @param {boolean} selected
  * @param {'light' | 'dark' | undefined} colorScheme

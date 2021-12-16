@@ -126,6 +126,10 @@ _translatePageLink.innerText = i18n.getMessage('translatePage');
 /** @type {string} */
 const _uiLanguageCode = i18n.getUILanguage();
 
+/** @type {'popup' | 'window'} */
+const _openMode = new URL(location.href).searchParams.get('mode') ?? 'popup';
+document.documentElement.classList.add(`mode-${_openMode}`);
+
 /**
  * @param {string} uid
  */
