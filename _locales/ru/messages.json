@@ -26,6 +26,9 @@
   "translate": {
     "message": "Перевести"
   },
+  "translatePage": {
+    "message": "Перевести активную страницу"
+  },
   "clear": {
     "message": "Очистить"
   },

@@ -123,3 +123,11 @@ textarea {
 .error-message {
   color: var(--cr-input-error-color);
 }
+
+.translate-page-link {
+  display: none;
+  float: right;
+}
+.translate-page-link.available {
+  display: block;
+}

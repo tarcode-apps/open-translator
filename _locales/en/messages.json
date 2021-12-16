@@ -26,6 +26,9 @@
   "translate": {
     "message": "Translate"
   },
+  "translatePage": {
+    "message": "Translate active page"
+  },
   "clear": {
     "message": "Clear"
   },

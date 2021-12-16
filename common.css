@@ -125,6 +125,13 @@ body {
   flex: 1;
 }
 
+/* links */
+
+a[href] {
+  color: var(--cr-link-color);
+  text-decoration: none;
+}
+
 /* select */
 
 select {

@@ -36,6 +36,15 @@ chrome.storage.onChanged.addListener(changes => {
   }
 });
 
+chrome.commands.onCommand.addListener(async command => {
+  switch (command) {
+    case 'translate_page': {
+      await translatePage();
+      break;
+    }
+  }
+});
+
 chrome.storage.local.get(
   ['selectedText', 'prefersScheme'],
   ({ selectedText: lastSelectedText, prefersScheme: lastPrefersScheme }) => {
@@ -64,4 +73,29 @@ function setIcon(selected, colorScheme) {
   chrome.action.setIcon({
     path: Object.fromEntries(Object.keys(chrome.runtime.getManifest().icons).map(size => [size, `${path}${size}.png`])),
   });
+}
+
+async function translatePage() {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (!/^https?:\/\//.test(tab?.url)) return;
+
+  const uiLanguageCode = navigator.language;
+  const sourceLanguageCode = 'auto';
+  chrome.storage.local.get(['targetLangCode'], ({ targetLangCode }) => {
+    targetLangCode ??= uiLanguageCode;
+    chrome.tabs.create({
+      openerTabId: tab.id,
+      index: tab.index + 1,
+      url: makeTranslatedPageUrl(tab.url, sourceLanguageCode, targetLangCode, uiLanguageCode),
+    });
+  });
+}
+
+function makeTranslatedPageUrl(sourceUrl, sourceLanguageCode, targetLanguageCode, uiLanguageCode) {
+  let url = `https://translate.google.com/translate`;
+  url += `?hl=${uiLanguageCode}`;
+  url += `&sl=${sourceLanguageCode}`;
+  url += `&tl=${targetLanguageCode}`;
+  url += `&u=${encodeURIComponent(sourceUrl)}`;
+  return url;
 }

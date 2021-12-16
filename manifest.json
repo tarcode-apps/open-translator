@@ -6,7 +6,7 @@
   "description": "__MSG_appDescription__",
   "homepage_url": "https://github.com/tarcode-apps/open-translator",
   "default_locale": "en",
-  "permissions": ["storage"],
+  "permissions": ["storage", "activeTab"],
   "host_permissions": ["http://*/*", "https://*/*"],
   "content_security_policy": {
     "extension_pages": "default-src 'self'; style-src 'self' 'unsafe-hashes' 'sha256-2FkMoYIfUwhaMVsbQnfoAJc8+Qzt0TC1GWOTrODFyNE='; connect-src https://translate.googleapis.com"
@@ -40,6 +40,13 @@
         "mac": "MacCtrl+Shift+Q"
       },
       "description": "__MSG_openShortcut__"
+    },
+    "translate_page": {
+      "suggested_key": {
+        "default": "Alt+Q",
+        "mac": "Alt+Shift+Q"
+      },
+      "description": "__MSG_translatePage__"
     }
   }
 }

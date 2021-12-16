@@ -119,6 +119,10 @@ _reverseCheckbox.addEventListener(
 const _reverseText = document.getElementById('reverse-text');
 _reverseText.innerText = i18n.getMessage('reverseTranslation');
 
+/** @type {HTMLLinkElement} */
+const _translatePageLink = document.getElementById('translate-page');
+_translatePageLink.innerText = i18n.getMessage('translatePage');
+
 /** @type {string} */
 const _uiLanguageCode = i18n.getUILanguage();
 
@@ -512,6 +516,27 @@ async function swapAsync() {
   _langTargetSelect.value = sourceLanguageCode;
 }
 
+function makeTranslatedPageUrl(sourceUrl, sourceLanguageCode, targetLanguageCode, uiLanguageCode) {
+  let url = `https://translate.google.com/translate`;
+  url += `?hl=${uiLanguageCode}`;
+  url += `&sl=${sourceLanguageCode}`;
+  url += `&tl=${targetLanguageCode}`;
+  url += `&u=${encodeURIComponent(sourceUrl)}`;
+  return url;
+}
+
+async function updateTranslatePageLink() {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (!/^https?:\/\//.test(tab?.url)) {
+    return;
+  }
+
+  const { targetLangCode: lastTargetLangCode } = await storage.local.getAsync(['targetLangCode']);
+
+  _translatePageLink.href = makeTranslatedPageUrl(tab.url, 'auto', lastTargetLangCode, _uiLanguageCode);
+  _translatePageLink.classList.add('available');
+}
+
 (async () => {
   const {
     translatorUid: lastTranslatorUid,
@@ -594,4 +619,6 @@ async function swapAsync() {
       await translateAsync();
     }
   }
+
+  await updateTranslatePageLink();
 })();
