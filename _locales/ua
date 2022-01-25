@@ -1,0 +1,89 @@
+{
+  "appName": {
+    "message": "Open Translator"
+  },
+  "appDescription": {
+    "message": "Швидкий доступ до Google Перекладача"
+  },
+  "appVersion": {
+    "message": "Версія"
+  },
+  "appAuthor": {
+    "message": "Розробник"
+  },
+  "appOptions": {
+    "message": "Налаштування перекладача"
+  },
+  "appTitle": {
+    "message": "Перекладач"
+  },
+  "appSourceCode": {
+    "message": "Вихідний код"
+  },
+  "openShortcut": {
+    "message": "Відкрити перекладач"
+  },
+  "translate": {
+    "message": "Перекласти"
+  },
+  "translatePage": {
+    "message": "Перекласти активну сторінку"
+  },
+  "clear": {
+    "message": "Очистити"
+  },
+  "reverseTranslation": {
+    "message": "Зворотній переклад"
+  },
+  "swapLanguages": {
+    "message": "Поміняти місцями"
+  },
+  "sourcePlaceholder": {
+    "message": "Початковий текст"
+  },
+  "targetPlaceholder": {
+    "message": "Переклад"
+  },
+  "reversePlaceholder": {
+    "message": "Зворотній переклад"
+  },
+  "detectedLanguage": {
+    "message": "Визначено: $1"
+  },
+  "errorUnknown": {
+    "message": "Невідома помилка, спробуйте перекласти пізніше"
+  },
+  "errorTooManyRequests": {
+    "message": "Забагато запитів, спробуйте перекласти через кілька хвилин"
+  },
+  "errorUriTooLong": {
+    "message": "Занадто довгий текст, спробуйте перекласти його частинами"
+  },
+  "shortcuts": {
+    "message": "Гарячі клавіші"
+  },
+  "shortcutEdit": {
+    "message": "Редагувати"
+  },
+  "shortcutNotSet": {
+    "message": "Не задано"
+  },
+  "shortcutEnter": {
+    "message": "Вкажіть гарячі клавіші"
+  },
+  "shortcutErrorModifierRequired": {
+    "message": "Поєднання має починатися з клавіші Ctrl або Alt"
+  },
+  "shortcutErrorLetterRequired": {
+    "message": "Необхідно додати літеру"
+  },
+  "troubleshooting": {
+    "message": "Скидання налаштувань"
+  },
+  "troubleshootingResetSettings": {
+    "message": "Відновлення стандартних налаштувань"
+  },
+  "troubleshootingResetSettingsQuestion": {
+    "message": "Скинути налаштування?"
+  }
+}
