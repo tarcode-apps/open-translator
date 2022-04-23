@@ -9,7 +9,7 @@ html {
   --cr-section-vertical-padding: 12px;
   --cr-section-min-height: 48px;
 
-  --cr-card-border-radius: 4px;
+  --cr-card-border-radius: 8px;
 
   --cr-elevation-1: rgba(var(--cr-card-shadow-color-rgb), 0.3) 0 1px 2px 0,
     rgba(var(--cr-card-shadow-color-rgb), 0.15) 0 1px 3px 1px;
@@ -22,7 +22,7 @@ html {
   --cr-elevation-5: rgba(var(--cr-card-shadow-color-rgb), 0.3) 0 4px 4px 0,
     rgba(var(--cr-card-shadow-color-rgb), 0.15) 0 8px 12px 6px;
 
-  --cr-card-shadow: var(--cr-elevation-1);
+  --cr-card-shadow: var(--cr-elevation-2);
 
   --cr-icon-button-fill-color: var(--google-grey-refresh-700);
   --cr-icon-button-size: 36px;
@@ -118,6 +118,10 @@ section {
 
 .row-label {
   flex: 1;
+  flex-basis: 1e-9px;
+  padding-block-end: var(--cr-section-vertical-padding);
+  padding-block-start: var(--cr-section-vertical-padding);
+  line-height: 154%;
 }
 
 .row-end-icon {
