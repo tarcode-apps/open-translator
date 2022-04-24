@@ -55,10 +55,7 @@ chrome.storage.local.get(
 chrome.contextMenus.create({
   id: 'open_translator_window',
   contexts: ['action'],
-  // https://github.com/w3c/webextensions/issues/93
-  // https://bugs.chromium.org/p/chromium/issues/detail?id=1268098
-  //title: chrome.i18n.getMessage('openInNewWindow'),
-  title: 'Open Translator in new window',
+  title: chrome.i18n.getMessage('openInNewWindow'),
 });
 
 chrome.contextMenus.onClicked.addListener(info => {
