@@ -44,17 +44,20 @@ button + button {
 
 .source {
   flex: 1;
+  position: relative;
 }
 
 .target {
   flex: 1.5;
   min-height: 0;
+  position: relative;
 }
 
 .reverse {
   flex: 1;
   margin-top: 12px;
   min-height: 0;
+  position: relative;
 }
 
 #lang-source,
@@ -74,6 +77,13 @@ button + button {
 
 textarea {
   resize: none;
+}
+
+.textarea-actions {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  padding: 2px;
 }
 
 .dictionary-translation {
@@ -130,4 +140,18 @@ textarea {
 }
 .translate-page-link.available {
   display: block;
+}
+
+.tts {
+  width: 30px;
+  height: 30px;
+  color: var(--button-text-color-action);
+  opacity: 0.3;
+}
+.tts svg {
+  margin-top: 2px;
+}
+.tts:hover {
+  opacity: 1;
+  transition: opacity 400ms;
 }

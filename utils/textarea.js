@@ -34,3 +34,14 @@ export function createHtmlTextArea(element) {
 
   return element;
 }
+
+/**
+ * @param {HTMLElement} element
+ * @param {HTMLElement} container
+ */
+export function attachToTextAreaEdge(element, container) {
+  new ResizeObserver(() => {
+    const isScrollVisible = container.clientHeight < container.scrollHeight;
+    element.style.right = isScrollVisible ? `${container.offsetWidth - container.clientWidth}px` : 0;
+  }).observe(container);
+}

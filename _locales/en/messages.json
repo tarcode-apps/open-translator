@@ -59,6 +59,9 @@
   "errorUriTooLong": {
     "message": "The text is too long, try to translate it in parts"
   },
+  "ttsSpeak": {
+    "message": "Speak"
+  },
   "shortcuts": {
     "message": "Keyboard shortcuts"
   },

@@ -59,6 +59,9 @@
   "errorUriTooLong": {
     "message": "Слишком длинный текст, попробуйте перевести его по частям"
   },
+  "ttsSpeak": {
+    "message": "Озвучить"
+  },
   "shortcuts": {
     "message": "Быстрые клавиши"
   },

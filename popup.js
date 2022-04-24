@@ -1,7 +1,7 @@
 'use strict';
 
 import { createRipple } from './utils/ripple.js';
-import { createHtmlTextArea } from './utils/textarea.js';
+import { attachToTextAreaEdge, createHtmlTextArea } from './utils/textarea.js';
 import { isShortcutPressed } from './utils/shortcut.js';
 import { storage } from './browser/storage.js';
 import { i18n } from './browser/i18n.js';
@@ -81,13 +81,51 @@ _sourceTextArea.addEventListener(
   { passive: true },
 );
 
+attachToTextAreaEdge(document.getElementById('source-actions'), _sourceTextArea);
+/** @type {HTMLButtonElement} */
+const _sourceTts = document.getElementById('source-tts');
+_sourceTts.title = i18n.getMessage('ttsSpeak');
+_sourceTts.addEventListener(
+  'click',
+  () => {
+    chrome.tts.speak(_sourceTextArea.value ?? '');
+  },
+  { passive: true },
+);
+
 /** @type {HTMLElement} */
 const _targetTextArea = createHtmlTextArea(document.getElementById('target'));
 _targetTextArea.placeholder = i18n.getMessage('targetPlaceholder');
 
+attachToTextAreaEdge(document.getElementById('target-actions'), _targetTextArea);
+/** @type {HTMLButtonElement} */
+const _targetTts = document.getElementById('target-tts');
+_targetTts.title = i18n.getMessage('ttsSpeak');
+_targetTts.addEventListener(
+  'click',
+  async () => {
+    const { translated: lastTranslated } = await storage.local.getAsync(['translated']);
+    chrome.tts.speak(lastTranslated?.translatedText ?? '');
+  },
+  { passive: true },
+);
+
 /** @type {HTMLElement} */
 const _reverseTextArea = createHtmlTextArea(document.getElementById('reverse'));
 _reverseTextArea.placeholder = i18n.getMessage('reversePlaceholder');
+
+attachToTextAreaEdge(document.getElementById('reverse-actions'), _reverseTextArea);
+/** @type {HTMLButtonElement} */
+const _reverseTts = document.getElementById('reverse-tts');
+_reverseTts.title = i18n.getMessage('ttsSpeak');
+_reverseTts.addEventListener(
+  'click',
+  async () => {
+    const { translatedReverse: lastTranslatedReverse } = await storage.local.getAsync(['translatedReverse']);
+    chrome.tts.speak(lastTranslatedReverse?.translatedText ?? '');
+  },
+  { passive: true },
+);
 
 /** @type {HTMLButtonElement} */
 const _translateButton = document.getElementById('translate');
@@ -500,6 +538,7 @@ async function clearAsync() {
     translated: null,
     translatedReverse: null,
   });
+  chrome.tts.stop();
 }
 
 async function swapAsync() {
