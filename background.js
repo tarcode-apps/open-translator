@@ -61,23 +61,12 @@ chrome.contextMenus.create({
 chrome.contextMenus.onClicked.addListener(info => {
   switch (info.menuItemId) {
     case 'open_translator_window': {
-      chrome.windows.create(
-        {
-          type: 'popup',
-          url: './popup.html?mode=window',
-          width: 450,
-          height: 500,
-          focused: false,
-        },
-        wnd => {
-          // Workaround for black window content
-          setTimeout(() => {
-            chrome.windows.update(wnd.id, {
-              focused: true,
-            });
-          }, 50);
-        },
-      );
+      chrome.windows.create({
+        type: 'popup',
+        url: './popup.html?mode=window',
+        width: 450,
+        height: 500,
+      });
       break;
     }
   }
