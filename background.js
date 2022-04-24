@@ -52,6 +52,26 @@ chrome.storage.local.get(
   },
 );
 
+chrome.contextMenus.create({
+  id: 'open_translator_window',
+  contexts: ['action'],
+  title: chrome.i18n.getMessage('openInNewWindow'),
+});
+
+chrome.contextMenus.onClicked.addListener(info => {
+  switch (info.menuItemId) {
+    case 'open_translator_window': {
+      chrome.windows.create({
+        type: 'popup',
+        url: './popup.html?mode=window',
+        width: 450,
+        height: 500,
+      });
+      break;
+    }
+  }
+});
+
 /**
  * @param {boolean} selected
  * @param {'light' | 'dark' | undefined} colorScheme

@@ -29,6 +29,9 @@
   "translatePage": {
     "message": "Перекласти активну сторінку"
   },
+  "openInNewWindow": {
+    "message": "Відкрити перекладач у окремому вікні"
+  },
   "clear": {
     "message": "Очистити"
   },
