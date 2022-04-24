@@ -476,7 +476,7 @@ async function translateAsync() {
     } else {
       _reverseTextArea.innerHTML = '';
       await storage.local.setAsync({
-        translatedReverse: undefined,
+        translatedReverse: null,
       });
     }
   } catch (error) {
@@ -484,8 +484,8 @@ async function translateAsync() {
     _reverseTextArea.innerHTML = '';
     await storage.local.setAsync({
       sourceText: '',
-      translated: undefined,
-      translatedReverse: undefined,
+      translated: null,
+      translatedReverse: null,
     });
   }
 }
@@ -497,8 +497,8 @@ async function clearAsync() {
   await updateAutoOptionAsync('');
   await storage.local.setAsync({
     sourceText: '',
-    translated: undefined,
-    translatedReverse: undefined,
+    translated: null,
+    translatedReverse: null,
   });
 }
 
