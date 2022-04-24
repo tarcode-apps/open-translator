@@ -29,6 +29,9 @@
   "translatePage": {
     "message": "Translate active page"
   },
+  "openInNewWindow": {
+    "message": "Open Translator in new window"
+  },
   "clear": {
     "message": "Clear"
   },
