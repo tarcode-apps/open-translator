@@ -566,7 +566,7 @@ async function updateTranslatePageLink() {
 
   const buttons = document.getElementsByTagName('button');
   for (const button of buttons) {
-    button.addEventListener('click', createRipple, { passive: true });
+    button.addEventListener('mousedown', createRipple, { passive: true });
   }
 
   window.addEventListener('keydown', handleFirstTab, { passive: true });
