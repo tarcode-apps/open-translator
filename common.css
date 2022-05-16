@@ -195,7 +195,6 @@ button {
   --button-active-shadow-rgb: var(--google-grey-800-rgb);
   --button-focus-shadow-color: rgba(var(--google-blue-600-rgb), 0.4);
   --button-border-color: var(--google-grey-refresh-300);
-  --button-hover-bg-color: rgba(var(--google-blue-refresh-500-rgb), 0.04);
 
   font-family: inherit;
   font-size: inherit;
@@ -266,7 +265,6 @@ button:hover {
   --button-text-color-action: white;
 
   color: var(--button-text-color-action);
-  background: none;
   background-color: var(--button-bg-action);
   border-radius: 4px;
 
@@ -281,6 +279,10 @@ button:hover {
   padding: 6px 16px;
 }
 
+.button-accent:active {
+  background: var(--button-bg-action);
+}
+
 .button-accent:hover {
   background: var(--button-hover-bg-action);
 }
@@ -292,11 +294,11 @@ button:hover {
     --button-active-shadow-rgb: 0, 0, 0;
     --button-focus-shadow-color: rgba(var(--google-blue-refresh-300-rgb), 0.5);
     --button-border-color: var(--google-grey-refresh-700);
+    --button-active-bg: black linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06));
   }
 
   .button-icon {
     --button-hover-bg-color: rgba(var(--google-blue-refresh-300-rgb), 0.08);
-    --button-active-bg: black linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06));
   }
 
   .button-accent {
