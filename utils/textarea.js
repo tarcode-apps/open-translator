@@ -6,7 +6,14 @@
 export function createHtmlTextArea(element) {
   let lastInnerHtml;
 
-  element.addEventListener('cut', e => e.preventDefault());
+  const copyAsPlainText = e => {
+    const selectedText = document.getSelection().toString().trim();
+    if (selectedText) e.clipboardData.setData('text/plain', selectedText);
+    e.preventDefault();
+  };
+
+  element.addEventListener('cut', e => copyAsPlainText(e));
+  element.addEventListener('copy', e => copyAsPlainText(e));
   element.addEventListener('paste', e => e.preventDefault());
   element.addEventListener('drop', e => e.preventDefault());
   element.addEventListener('drag', () => {
@@ -23,7 +30,7 @@ export function createHtmlTextArea(element) {
     const isCtrl = e.ctrlKey || e.metaKey;
     if (isCtrl && e.code === 'KeyA') return true;
     if (isCtrl && e.code === 'KeyC') return true;
-    if (isCtrl && e.code === 'KeyX') document.execCommand('copy');
+    if (isCtrl && e.code === 'KeyX') return true;
     e.preventDefault();
   });
 
