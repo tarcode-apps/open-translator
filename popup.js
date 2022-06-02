@@ -250,7 +250,7 @@ async function updateAutoOptionAsync(languageCode) {
   const autoOption = Array.from(_langSourceSelect.options).find(o => o.value === _languages.autoDetectLanguageCode);
   if (languageCode) {
     const lang = _languages.sourceLanguages.find(l => l.code === languageCode);
-    autoOption.text = i18n.getMessage('detectedLanguage', [lang.friendlyName]);
+    autoOption.text = i18n.getMessage('detectedLanguage', [lang?.friendlyName ?? languageCode]);
   } else {
     const lang = _languages.sourceLanguages.find(l => l.code === _languages.autoDetectLanguageCode);
     autoOption.text = lang.friendlyName;
