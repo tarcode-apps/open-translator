@@ -288,7 +288,7 @@ async function updateAutoOptionAsync(languageCode) {
   const autoOption = Array.from(_langSourceSelect.options).find(o => o.value === _languages.autoDetectLanguageCode);
   if (languageCode) {
     const lang = _languages.sourceLanguages.find(l => l.code === languageCode);
-    autoOption.text = i18n.getMessage('detectedLanguage', [lang.friendlyName]);
+    autoOption.text = i18n.getMessage('detectedLanguage', [lang?.friendlyName ?? languageCode]);
   } else {
     const lang = _languages.sourceLanguages.find(l => l.code === _languages.autoDetectLanguageCode);
     autoOption.text = lang.friendlyName;
@@ -428,6 +428,13 @@ async function findBestTargetLanguageCodeAsync(sourceLanguageCode, targetLanguag
  * @param {string} targetLanguageCode
  */
 async function storeLanguagePairAsync(sourceLanguageCode, targetLanguageCode) {
+  if (
+    _languages.sourceLanguages.every(l => l.code !== sourceLanguageCode) ||
+    _languages.targetLanguages.every(l => l.code !== targetLanguageCode)
+  ) {
+    return;
+  }
+
   let { languagePairs } = await storage.local.getAsync(['languagePairs']);
   languagePairs = [
     { sourceLanguageCode, targetLanguageCode },
