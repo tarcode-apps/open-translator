@@ -390,6 +390,13 @@ async function findBestTargetLanguageCodeAsync(sourceLanguageCode, targetLanguag
  * @param {string} targetLanguageCode
  */
 async function storeLanguagePairAsync(sourceLanguageCode, targetLanguageCode) {
+  if (
+    _languages.sourceLanguages.every(l => l.code !== sourceLanguageCode) ||
+    _languages.targetLanguages.every(l => l.code !== targetLanguageCode)
+  ) {
+    return;
+  }
+
   let { languagePairs } = await storage.local.getAsync(['languagePairs']);
   languagePairs = [
     { sourceLanguageCode, targetLanguageCode },
