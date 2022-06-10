@@ -108,12 +108,26 @@ section {
 
 .link-row {
   cursor: pointer;
-  color: inherit;
   text-decoration: none;
+}
+
+a[href].link-row {
+  color: inherit;
 }
 
 .link-row:hover {
   background-color: var(--cr-hover-background-color);
+}
+
+.link-row .button-icon {
+  margin-right: calc((var(--cr-icon-button-size) - var(--cr-icon-button-icon-size)) / -2);
+  color: var(--cr-icon-button-fill-color);
+}
+
+.link-row .button-icon:hover,
+.link-row .button-icon:active {
+  background: none;
+  box-shadow: none;
 }
 
 .row-label {
@@ -195,6 +209,9 @@ section {
   width: var(--cr-icon-button-size);
   min-width: var(--cr-icon-button-size);
   height: var(--cr-icon-button-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .button-icon .icon {

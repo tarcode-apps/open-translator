@@ -615,14 +615,6 @@ async function updateTranslatePageLink() {
     button.addEventListener('mousedown', createRipple, { passive: true });
   }
 
-  window.addEventListener('keydown', handleFirstTab, { passive: true });
-  function handleFirstTab(event) {
-    if (event.code == 'Tab') {
-      document.body.classList.add('focus-outline-visible');
-      window.removeEventListener('keydown', handleFirstTab);
-    }
-  }
-
   document.addEventListener(
     'keydown',
     async e => {
