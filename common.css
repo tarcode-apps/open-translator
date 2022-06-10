@@ -213,7 +213,7 @@ button:active {
     0 3px 6px 2px rgba(var(--button-active-shadow-rgb), 0.15);
 }
 
-.focus-outline-visible button:focus {
+button:focus-visible {
   box-shadow: 0 0 0 2px var(--button-focus-shadow-color);
 }
 
@@ -530,11 +530,11 @@ button:hover {
   opacity: 0;
 }
 
-.focus-outline-visible .checkbox > input:focus {
+.checkbox > input:focus-visible {
   opacity: 0.12;
 }
 
-.focus-outline-visible .checkbox:hover > input:focus {
+.checkbox:hover > input:focus-visible {
   opacity: 0.16;
 }
 
