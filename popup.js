@@ -598,6 +598,7 @@ async function updateTranslatePageLink() {
     detectedLanguageCode: lastDetectedLanguageCode,
     shortcutReverse: lastShortcutReverse,
     shortcutClear: lastShortcutClear,
+    ttsEnabled: lastTtsEnabled,
   } = await storage.local.getAsync([
     'translatorUid',
     'reverse',
@@ -608,7 +609,13 @@ async function updateTranslatePageLink() {
     'detectedLanguageCode',
     'shortcutReverse',
     'shortcutClear',
+    'ttsEnabled',
   ]);
+
+  if (lastTtsEnabled) {
+    _sourceTts.classList.add('available');
+    _targetTts.classList.add('available');
+  }
 
   const buttons = document.getElementsByTagName('button');
   for (const button of buttons) {

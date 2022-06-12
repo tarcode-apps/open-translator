@@ -62,6 +62,12 @@
   "errorUriTooLong": {
     "message": "Занадто довгий текст, спробуйте перекласти його частинами"
   },
+  "ttsOptionsHeader": {
+    "message": "TTS"
+  },
+  "ttsOptionsEnabled": {
+    "message": "Увімкнути озвучення тексту"
+  },
   "ttsSpeak": {
     "message": "Озвучити"
   },

@@ -159,6 +159,10 @@ textarea {
   height: 30px;
   color: var(--button-text-color-action);
   opacity: 0.3;
+  display: none;
+}
+.tts.available {
+  display: block;
 }
 .tts svg {
   margin-top: 2px;

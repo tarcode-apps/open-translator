@@ -4,10 +4,11 @@ import { i18n } from './browser/i18n.js';
 import { storage } from './browser/storage.js';
 import { createShortcutInput } from './utils/shortcut.js';
 
-const { shortcutReverse: lastShortcutReverse, shortcutClear: lastShortcutClear } = await storage.local.getAsync([
-  'shortcutReverse',
-  'shortcutClear',
-]);
+const {
+  shortcutReverse: lastShortcutReverse,
+  shortcutClear: lastShortcutClear,
+  ttsEnabled: lastTtsEnabled,
+} = await storage.local.getAsync(['shortcutReverse', 'shortcutClear', 'ttsEnabled']);
 
 document.title = i18n.getMessage('appOptions');
 document.querySelectorAll('[data-locale]').forEach(elem => {
@@ -19,6 +20,27 @@ document.getElementById('author').innerText = chrome.runtime.getManifest().autho
 document.getElementById('sourceCode').href = chrome.runtime.getManifest().homepage_url;
 
 const _shortcutsEl = document.getElementById('shortcuts');
+
+/** @type {HTMLDivElement} */
+const _ttsEnabledRowEl = document.getElementById('ttsEnabledRow');
+_ttsEnabledRowEl.addEventListener('click', () => _ttsEnabledEl.click(), { passive: true });
+
+const _ttsEnabledCheckboxEl = document.getElementById('ttsEnabledCheckbox');
+_ttsEnabledCheckboxEl.addEventListener('click', event => event.stopPropagation());
+
+/** @type {HTMLInputElement} */
+const _ttsEnabledEl = document.getElementById('ttsEnabled');
+_ttsEnabledEl.checked = lastTtsEnabled ?? false;
+_ttsEnabledEl.addEventListener(
+  'change',
+  async () => {
+    const ttsEnabled = _ttsEnabledEl.checked;
+    await storage.local.setAsync({
+      ttsEnabled: ttsEnabled,
+    });
+  },
+  { passive: true },
+);
 
 const shortcutLocale = {
   buttonLabel: i18n.getMessage('shortcutEdit'),

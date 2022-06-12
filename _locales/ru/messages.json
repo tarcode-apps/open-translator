@@ -62,6 +62,12 @@
   "errorUriTooLong": {
     "message": "Слишком длинный текст, попробуйте перевести его по частям"
   },
+  "ttsOptionsHeader": {
+    "message": "TTS"
+  },
+  "ttsOptionsEnabled": {
+    "message": "Включить озвучивание текста"
+  },
   "ttsSpeak": {
     "message": "Озвучить"
   },

@@ -62,6 +62,12 @@
   "errorUriTooLong": {
     "message": "The text is too long, try to translate it in parts"
   },
+  "ttsOptionsHeader": {
+    "message": "TTS"
+  },
+  "ttsOptionsEnabled": {
+    "message": "Enable Text to Speech"
+  },
   "ttsSpeak": {
     "message": "Speak"
   },
