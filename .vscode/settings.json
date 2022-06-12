@@ -13,5 +13,6 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "cSpell.language": "en,ru,uk",
   "cSpell.words": ["referrerpolicy"]
 }
