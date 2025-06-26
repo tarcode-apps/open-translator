@@ -10,6 +10,7 @@ Chrome extension that provides quick access to Google Translate, allowing you to
 - Reverse translation
 - Smart language pair recognition
 - Pure JavaScript
+- Since Chrome 138, [Translation with built-in AI](https://developer.chrome.com/docs/ai/translator-api) is used
 
 ## Installation
 

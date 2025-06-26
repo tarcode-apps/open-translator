@@ -1,4 +1,5 @@
 {
+  "js/ts.implicitProjectConfig.checkJs": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "[javascript]": {
@@ -14,5 +15,5 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "cSpell.language": "en,ru,uk",
-  "cSpell.words": ["referrerpolicy"]
+  "cSpell.words": ["downloadprogress", "referrerpolicy"]
 }

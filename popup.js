@@ -6,16 +6,15 @@ import { isShortcutPressed } from './utils/shortcut.js';
 import { storage } from './browser/storage.js';
 import { i18n } from './browser/i18n.js';
 import { GoogleTranslator } from './translators/google-translator.js';
+import { ChromeTranslatorWrapper } from './translators/chrome-translator-wrapper.js';
 
-/** @type {GoogleTranslator} */
+/** @type {import('./types.js').Translator} */
 let _translator;
-const _translators = [new GoogleTranslator()];
 
-/** @type {{
- * sourceLanguages: Array<{code, friendlyName}>,
- * targetLanguages: Array<{code, friendlyName}>,
- * autoDetectLanguageCode: string
-}} */
+/** @type {Array<import('./types.js').Translator>} */
+const _translators = [new ChromeTranslatorWrapper(new GoogleTranslator())];
+
+/** @type {import('./types.js').SupportedLanguages} */
 let _languages = {};
 
 document.title = i18n.getMessage('appName');
@@ -155,7 +154,7 @@ async function loadSupportedLanguagesAsync() {
     const acceptLanguages = await i18n.getAcceptLanguagesAsync();
 
     const importantLanguages = {};
-    importantLanguages[languages.autoDetectLanguageCode] = 1;
+    importantLanguages[_translator.autoDetectLanguageCode] = 1;
     importantLanguages['en'] = 2;
     acceptLanguages.filter(l => !l.startsWith('en')).forEach((l, i) => (importantLanguages[l] = i + 3));
 
@@ -223,7 +222,7 @@ function preventDataLose(lastSourceText) {
 
 /**
  * @param {HTMLSelectElement} select
- * @param {Array<{code, friendlyName}>} languages
+ * @param {Array<import('./types.js').Language>} languages
  */
 function updateLanguagesSelect(select, languages) {
   while (select.options.length > 0) {
@@ -245,14 +244,14 @@ function updateReverse(value) {
  * @param {string} languageCode
  */
 async function updateAutoOptionAsync(languageCode) {
-  if (!_languages.autoDetectLanguageCode) return;
+  if (!_translator.autoDetectLanguageCode) return;
 
-  const autoOption = Array.from(_langSourceSelect.options).find(o => o.value === _languages.autoDetectLanguageCode);
+  const autoOption = Array.from(_langSourceSelect.options).find(o => o.value === _translator.autoDetectLanguageCode);
   if (languageCode) {
     const lang = _languages.sourceLanguages.find(l => l.code === languageCode);
     autoOption.text = i18n.getMessage('detectedLanguage', [lang?.friendlyName ?? languageCode]);
   } else {
-    const lang = _languages.sourceLanguages.find(l => l.code === _languages.autoDetectLanguageCode);
+    const lang = _languages.sourceLanguages.find(l => l.code === _translator.autoDetectLanguageCode);
     autoOption.text = lang.friendlyName;
   }
 
@@ -411,6 +410,13 @@ async function storeLanguagePairAsync(sourceLanguageCode, targetLanguageCode) {
   await storage.local.setAsync({ languagePairs });
 }
 
+/**
+ * @param {string} sourceText
+ */
+function countWords(text) {
+  return text?.trim().split(/\s+/).filter(Boolean).length ?? 0;
+}
+
 async function translateAsync() {
   const sourceText = _sourceTextArea.value;
   if (!sourceText) {
@@ -422,7 +428,7 @@ async function translateAsync() {
     let sourceLanguageCode = _langSourceSelect.value;
     let targetLanguageCode = _langTargetSelect.value;
 
-    if (sourceLanguageCode === _languages.autoDetectLanguageCode) {
+    if (sourceLanguageCode === _translator.autoDetectLanguageCode) {
       const detection = await i18n.detectLanguageAsync(sourceText);
       if (detection.isReliable) {
         const detectedCode = detection.languages[0].language;
@@ -433,15 +439,17 @@ async function translateAsync() {
       }
     }
 
+    const dictionaryRequested = countWords(sourceText) <= 2;
+
     let translation = await _translator.translateAsync(
       sourceText,
       sourceLanguageCode,
       targetLanguageCode,
       _uiLanguageCode,
-      { translation: true, dictionary: true },
+      { translation: true, dictionary: dictionaryRequested },
     );
 
-    if (sourceLanguageCode === _languages.autoDetectLanguageCode) {
+    if (sourceLanguageCode === _translator.autoDetectLanguageCode) {
       sourceLanguageCode = translation.sourceLanguageCode;
       await updateAutoOptionAsync(sourceLanguageCode);
     } else {
@@ -459,7 +467,7 @@ async function translateAsync() {
           sourceLanguageCode,
           targetLanguageCode,
           _uiLanguageCode,
-          { translation: true, dictionary: true },
+          { translation: true, dictionary: dictionaryRequested },
         );
       }
     } else {
@@ -516,7 +524,7 @@ async function clearAsync() {
 async function swapAsync() {
   let sourceLanguageCode = _langSourceSelect.value;
   let targetLanguageCode = _langTargetSelect.value;
-  if (sourceLanguageCode === _languages.autoDetectLanguageCode) {
+  if (sourceLanguageCode === _translator.autoDetectLanguageCode) {
     const { detectedLanguageCode: lastDetectedLanguageCode } = await storage.local.getAsync(['detectedLanguageCode']);
     if (!lastDetectedLanguageCode) return;
 

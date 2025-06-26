@@ -12,14 +12,11 @@ export class GoogleTranslator {
     return 'Google Translate';
   }
 
-  /**
-   * @param {string} uiLanguageCode
-   * @return {Promise<{
-   *  sourceLanguages: Array<{code, friendlyName}>,
-   *  targetLanguages: Array<{code, friendlyName}>,
-   *  autoDetectLanguageCode: string,
-   * }>}
-   */
+  get autoDetectLanguageCode() {
+    return 'auto';
+  }
+
+  /** @type {import('../types.js').GetSupportedLanguagesAsyncFn} */
   async getSupportedLanguagesAsync(uiLanguageCode) {
     let url = `${this._baseUrl}/l`;
     url += `?client=${this._clientName}`;
@@ -37,36 +34,10 @@ export class GoogleTranslator {
         code: k,
         friendlyName: toTitleCase(v),
       })),
-      autoDetectLanguageCode: 'auto',
     };
   }
 
-  /**
-   * @param {string} sourceText
-   * @param {string} sourceLanguageCode
-   * @param {string} targetLanguageCode
-   * @param {string} uiLanguageCodeCode
-   * @param {{
-   *  translation: boolean,
-   *  alternateTranslations: boolean,
-   *  transcription: boolean,
-   *  dictionary: boolean,
-   *  definitions: boolean,
-   *  synonyms: boolean,
-   *  examples: boolean,
-   * }} requests
-   * @return {Promise<{
-   *  translatedText: string,
-   *  sourceLanguageCode: string,
-   *  dictionary: Array<{
-   *    partOfSpeech: string,
-   *    terms: Array<{
-   *      word: string,
-   *      reverseTranslation: Array<string>,
-   *    }>
-   *  }>
-   * }>}
-   */
+  /** @type {import('../types.js').TranslateAsyncFn} */
   async translateAsync(sourceText, sourceLanguageCode, targetLanguageCode, uiLanguageCode, requests) {
     let url = `${this._baseUrl}/single`;
     url += `?client=${this._clientName}`;
@@ -87,7 +58,7 @@ export class GoogleTranslator {
 
     const json = await this._getAsync(url);
     return {
-      translatedText: json.sentences.reduce((acc, cur) => acc + cur.trans, ''),
+      translatedText: json.sentences?.reduce((acc, cur) => acc + cur.trans, ''),
       sourceLanguageCode: json.src,
       dictionary: json.dict?.map(d => ({
         partOfSpeech: d.pos,
@@ -99,6 +70,9 @@ export class GoogleTranslator {
     };
   }
 
+  /**
+   * @param {string} url
+   */
   async _getAsync(url) {
     let response = await fetch(url, {
       referrerPolicy: 'no-referrer',

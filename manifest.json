@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_appName__",
-  "version": "1.4",
+  "version": "1.5",
   "author": "Artem Tarasov",
   "description": "__MSG_appDescription__",
   "homepage_url": "https://github.com/tarcode-apps/open-translator",

@@ -3,7 +3,7 @@
 class I18n {
   /**
    * @param {string} messageName
-   * @param {Array<string>?} substitutions
+   * @param {Array<string>?} [substitutions]
    * @returns {string}
    */
   getMessage(messageName, substitutions) {
